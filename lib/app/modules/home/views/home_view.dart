@@ -12,12 +12,10 @@ import '../model/task_model.dart';
 class HomeView extends GetView<HomeController> {
    HomeView({Key? key}) : super(key: key);
    Random id = Random();
-   void check()async{
-     controller.todoList.value=await DataBaseHelper.dbInstance.getTodos();
-   }
+
   @override
   Widget build(BuildContext context) {
-    check();
+
     return Scaffold(
         appBar: AppBar(
           title: Text('LocaldatabaseView'),
@@ -51,7 +49,7 @@ class HomeView extends GetView<HomeController> {
               children: [
                 ElevatedButton(onPressed: () async{
                   var todo = todoModel(
-                    id: id.nextInt(100),title: controller.title.value.text,description: controller.description.value.text,
+                    id: id.nextInt(100000),title: controller.title.value.text,description: controller.description.value.text,
                   );
 
                   await DataBaseHelper.dbInstance.addTodos(todo);
@@ -114,7 +112,6 @@ class HomeView extends GetView<HomeController> {
             //     },
             //   ),
             // )
-
             Expanded(child:
             Obx(()=> ListView.builder(
                 itemCount: controller.todoList.value.length,

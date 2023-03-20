@@ -51,7 +51,7 @@ class DataBaseHelper{
     Database db =await dbInstance.getDatabase;
     var todos  = await db.query('todos',orderBy: 'id');
 
-    print('mytodo${todos}');
+    print('mytodo------${todos}');
 
     List<todoModel> todoList= todos.isNotEmpty?todos.map((modelObj) => todoModel.fromJson(modelObj)).toList():[];
 
@@ -66,7 +66,6 @@ class DataBaseHelper{
 
   Future updateTodo(todoModel todo) async{
     Database db =await dbInstance.getDatabase;
-
     return await db.update(
       'todos',
       todo.toJson(),
